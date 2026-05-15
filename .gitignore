@@ -1,2 +1,5 @@
 .notes-context/
 .DS_Store
+__pycache__/
+*.pyc
+*.swp

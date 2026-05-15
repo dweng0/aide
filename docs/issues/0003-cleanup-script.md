@@ -1,6 +1,6 @@
 # #3 — Cleanup script
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 
@@ -8,11 +8,11 @@ Write `scripts/cleanup_planner.py`. When called, it reads `user-planner.md`, rem
 
 ## Acceptance criteria
 
-- [ ] `cleanup_planner.py` exists in `aide/scripts/`
-- [ ] Running the script removes all `- [x]` lines from `user-planner.md`
-- [ ] Unchecked `- [ ]` lines are preserved exactly
-- [ ] The script is a no-op if `user-planner.md` is empty or has no checked items
-- [ ] The script resolves the path to `user-planner.md` relative to the `aide` repo (not hardcoded)
+- [x] `cleanup_planner.py` exists in `aide/scripts/`
+- [x] Running the script removes all `- [x]` lines from `user-planner.md`
+- [x] Unchecked `- [ ]` lines are preserved exactly
+- [x] The script is a no-op if `user-planner.md` is empty or has no checked items
+- [x] The script resolves the path to `user-planner.md` relative to the `aide` repo (not hardcoded)
 
 ## Blocked by
 
@@ -38,12 +38,12 @@ None — can start immediately (#1 scaffold is done).
 - Script must be callable with no arguments — path resolution is internal
 
 **Acceptance criteria:**
-- [ ] Script is present in `aide/scripts/` and executable
-- [ ] All `- [x]` lines are removed after running
-- [ ] All `- [ ]` lines are preserved exactly
-- [ ] Non-checkbox content (headings, blank lines) is preserved
-- [ ] Script is a no-op if the file is empty or has no checked items
-- [ ] Script does not error if `user-planner.md` does not exist
+- [x] Script is present in `aide/scripts/` and executable
+- [x] All `- [x]` lines are removed after running
+- [x] All `- [ ]` lines are preserved exactly
+- [x] Non-checkbox content (headings, blank lines) is preserved
+- [x] Script is a no-op if the file is empty or has no checked items
+- [x] Script does not error if `user-planner.md` does not exist
 
 **Out of scope:**
 - Archiving checked items before removing them

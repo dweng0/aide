@@ -1,0 +1,6 @@
+{
+  "name": "roadmap-gps",
+  "description": "Creates and maintains per-project roadmaps at ~/.notes-context/roadmap/{name}.md using a Now/Next/Later horizon model. Use when the user wants to plan a project roadmap, update an existing roadmap, review project direction, or asks what to work on next.",
+  "triggers": ["roadmap", "roadmap-gps", "project plan", "what should I work on", "update roadmap", "review roadmap"],
+  "instructions": "See skills/roadmap-gps/SKILL.md for full instructions.\n\nSummary: Requires /project-start to have been run first — reads ~/.notes-context/projects/{name}/project-context.md for project name and context. Roadmap lives at ~/.notes-context/projects/{name}/roadmap.md. Infer the active project from the current directory (CONTEXT.md name → directory name → ask). Grill dependencies first, then urgency, to place Deliverables into Now/Next/Later horizons. Always show a diff summary and ask for confirmation before writing. Encode timestamps as inline HTML comments (ISO 8601). Blocked Deliverables stay in Now."
+}

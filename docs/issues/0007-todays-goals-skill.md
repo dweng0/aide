@@ -1,6 +1,6 @@
 # #7 — Today's Goals Skill
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 
@@ -15,11 +15,11 @@ Future: will also read the user's calendar to surface today's meetings and atten
 
 ## Acceptance criteria
 
-- [ ] Skill is triggerable from opencode and Claude Code
-- [ ] Skill asks at least one follow-up question per goal to sharpen subtasks
-- [ ] Results are written to `daily-goals.md` in the correct format
-- [ ] Running the skill a second time on the same day appends to (or replaces) the file cleanly — no duplicate headings
-- [ ] Skill handles multiple goals in a single session
+- [x] Skill is triggerable from opencode and Claude Code
+- [x] Skill asks at least one follow-up question per goal to sharpen subtasks
+- [x] Results are written to `daily-goals.md` in the correct format
+- [x] Running the skill a second time on the same day appends to (or replaces) the file cleanly — no duplicate headings
+- [x] Skill handles multiple goals in a single session
 
 ## Blocked by
 

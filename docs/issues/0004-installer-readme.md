@@ -1,6 +1,6 @@
 # #4 — Installer + README
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 
@@ -18,11 +18,11 @@ Write `install.sh` and `README.md`. The installer is the single command a user r
 
 ## Acceptance criteria
 
-- [ ] `install.sh` is executable and idempotent
-- [ ] Running it on a fresh machine creates `~/notes/`, all `.notes-context/` files, and the fish PATH file
-- [ ] Running it a second time does not overwrite existing `.notes-context/` files
-- [ ] `README.md` covers what aide is, install steps, and what the installer does
-- [ ] A new terminal session after install can run `note_organizer.sh` by name (it's on PATH)
+- [x] `install.sh` is executable and idempotent
+- [x] Running it on a fresh machine creates `~/notes/`, all `.notes-context/` files, and the fish PATH file
+- [x] Running it a second time does not overwrite existing `.notes-context/` files
+- [x] `README.md` covers what aide is, install steps, and what the installer does
+- [x] A new terminal session after install can run `note_organizer.sh` by name (it's on PATH)
 
 ## Blocked by
 

@@ -1,6 +1,6 @@
 # #5 — Retrospective Skill
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 
@@ -16,12 +16,12 @@ User Planner entry format: `- [ ] <natural language description> — see ~/notes
 
 ## Acceptance criteria
 
-- [ ] Skill is triggerable from opencode and Claude Code
-- [ ] Skill reads and surfaces all open items in `user-planner.md` before scanning notes
-- [ ] Skill correctly identifies Soft Tasks from note prose (not just explicit checkboxes)
-- [ ] New Soft Tasks are written to `user-planner.md` with source file references
-- [ ] `cleanup_planner.py` is called at the end of every session
-- [ ] Skill does not duplicate planner items already present
+- [x] Skill is triggerable from opencode and Claude Code
+- [x] Skill reads and surfaces all open items in `user-planner.md` before scanning notes
+- [x] Skill correctly identifies Soft Tasks from note prose (not just explicit checkboxes)
+- [x] New Soft Tasks are written to `user-planner.md` with source file references
+- [x] `cleanup_planner.py` is called at the end of every session
+- [x] Skill does not duplicate planner items already present
 
 ## Blocked by
 

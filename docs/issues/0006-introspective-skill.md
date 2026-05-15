@@ -1,6 +1,6 @@
 # #6 — Introspective Skill
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 
@@ -14,12 +14,12 @@ Skill flow:
 
 ## Acceptance criteria
 
-- [ ] Skill is triggerable from opencode and Claude Code
-- [ ] Skill reads today's Note (correct date-named file)
-- [ ] Skill cross-references note content against Daily Goals subtasks
-- [ ] Skill cross-references note content against open User Planner items
-- [ ] Output clearly distinguishes on-track, drifting, and unaddressed items
-- [ ] Skill handles the case where `daily-goals.md` is empty (Today's Goals Skill hasn't been run yet)
+- [x] Skill is triggerable from opencode and Claude Code
+- [x] Skill reads today's Note (correct date-named file)
+- [x] Skill cross-references note content against Daily Goals subtasks
+- [x] Skill cross-references note content against open User Planner items
+- [x] Output clearly distinguishes on-track, drifting, and unaddressed items
+- [x] Skill handles the case where `daily-goals.md` is empty (Today's Goals Skill hasn't been run yet)
 
 ## Blocked by
 

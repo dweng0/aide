@@ -1,0 +1,6 @@
+{
+  "name": "project-start",
+  "description": "One-time project setup skill. Captures project name, end goal, MVP, timelines, and stakeholders through a structured interview. Writes project-context.md and stakeholders.md to ~/.notes-context/projects/{name}/. Run this before using roadmap-gps on a new project.",
+  "triggers": ["project start", "project-start", "start project", "new project", "setup project", "initialise project", "initialize project"],
+  "instructions": "See skills/project-start/SKILL.md for full instructions.\n\nSummary: Infer the project name from CONTEXT.md (name field) in the current directory → directory name → ask. Conduct a structured interview: end goal, MVP, timelines, stakeholders (name/role/email, loop until done). Show a summary and ask for confirmation before writing. Write project-context.md and stakeholders.md to ~/.notes-context/projects/{name}/, creating the directory if needed. If project-context.md already exists, warn the user and offer to update — re-interview and overwrite on confirmation."
+}
