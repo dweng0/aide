@@ -2,8 +2,7 @@
 import os
 from pathlib import Path
 
-repo_root = Path(__file__).parent.parent
-planner = Path(os.environ.get("AIDE_PLANNER", repo_root / "user-planner.md"))
+planner = Path(os.environ.get("AIDE_PLANNER", Path.home() / ".notes-context" / "user-planner.md"))
 
 if not planner.exists():
     raise SystemExit(0)

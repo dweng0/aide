@@ -1,6 +1,6 @@
 # #2 — Migrate + enhance note scripts
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 

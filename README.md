@@ -33,6 +33,22 @@ Open a new terminal. You can now run `note_organizer.sh` by name.
 
 Running `install.sh` a second time is safe — it never overwrites existing files.
 
+## Morning briefing setup
+
+`morning_briefing.py` fetches your Gmail and Google Calendar before you run `/todays-goals`. The installer will prompt for two credentials.
+
+### Gmail (IMAP)
+
+1. **Enable IMAP** — Gmail → Settings (gear) → See all settings → Forwarding and POP/IMAP → IMAP access → **Enable IMAP** → Save
+2. **Create an App Password** — Google Account → Security → 2-Step Verification (must be enabled) → scroll to bottom → **App passwords** → name it anything (e.g. `aide`) → Create
+3. Copy the 16-character password — that's your `GMAIL_APP_PASSWORD`
+
+### Google Calendar
+
+Calendar events are fetched live via the Google Calendar MCP integration built into Claude Code and opencode — no credentials or setup needed. The `/todays-goals` skill calls it directly during the session.
+
+Once you have your Gmail credentials, run `install.sh` — it will prompt for them and write them to `~/.notes-context/.env`. Run `morning_briefing.py gmail` before starting `/todays-goals` each morning.
+
 ## Scripts
 
 | Script | What it does |
@@ -41,6 +57,7 @@ Running `install.sh` a second time is safe — it never overwrites existing file
 | `note_taker.sh` | Opens a note file in vim with context loaded |
 | `weekly-notes.sh` | Summarises the week's notes |
 | `cleanup_planner.py` | Removes checked (`- [x]`) items from `user-planner.md` |
+| `morning_briefing.py gmail` | Fetches last 24h of Gmail, filters noise, writes `daily-briefing/emails.md` |
 
 ## Skills
 

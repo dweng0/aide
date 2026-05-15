@@ -33,8 +33,7 @@ Use the source note's filename in the reference.
 
 When the session is complete, call `cleanup_planner.py` to strip all `- [x]` lines from `user-planner.md`:
 
-```sh
-python3 /path/to/aide/scripts/cleanup_planner.py
-```
+1. Read `~/.notes-context/manifest.md` and extract the `cleanup_planner:` line to get the script path.
+2. Run: `python3 <path from manifest>`
 
-Resolve the path to `aide/scripts/cleanup_planner.py` relative to the repo. Use the `AIDE_PLANNER` env var if set, otherwise the default path is `~/.notes-context/user-planner.md`.
+If the `cleanup_planner:` line is missing from `manifest.md`, fall back to `AIDE_PLANNER` env var for the planner path and warn the user that `install.sh` should be re-run to register the script path.
