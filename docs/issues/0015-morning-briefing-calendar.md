@@ -1,6 +1,6 @@
 # #15 — morning_briefing.py: Calendar fetch via iCal feed
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · wontfix
 
 ## What to build
 

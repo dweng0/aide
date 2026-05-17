@@ -1,13 +1,19 @@
 # aide roadmap
 
-## Current scope
+Active planning is tracked in `docs/issues/`. See that directory for open and in-progress work.
 
-See `docs/issues/` for active work.
+## Shipped
+
+- Note scripts (`note_organizer.sh`, `note_taker.sh`, `weekly-notes.sh`, `cleanup_planner.py`)
+- Retrospective, Introspective, and Today's Goals skills
+- Project Start and Roadmap GPS skills
+- Gmail + Google Calendar integration in Today's Goals (via MCP, per ADR 0003)
+- Installer (`install.sh`) with `email-filter.md` seeding
 
 ## Future
 
-### Calendar integration for Today's Goals Skill
-The Today's Goals Skill will read the user's calendar (via a script) to surface the day's meetings and attendees before the goal-setting drill-down. This gives the skill full context — not just what you want to achieve, but who you're talking to and when, so it can prompt for meeting-specific prep goals.
+### Project-scoped User Planner
+Issue #12 — a per-project view of Soft Tasks so items from one project don't surface during another project's Today's Goals session.
 
-### Roadmap Skill + roadmap alignment
-A dedicated Roadmap Skill that helps the user build and maintain a structured roadmap document (`.notes-context/roadmap.md`) — longer-horizon goals broken into milestones and projects. Once in place, both the Today's Goals Skill and the Introspective Skill will cross-reference daily goals against the roadmap, flagging when a day's work doesn't connect to any active milestone. This closes the loop between day-to-day intent and the bigger picture.
+### LLM Planner
+Reserved for future design — tasks the LLM itself actions on the user's behalf (e.g. scheduling a meeting, generating a draft). Requires significant additional design before implementation.

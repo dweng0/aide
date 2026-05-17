@@ -53,56 +53,60 @@ teardown() {
   [ "$count" -eq 1 ]
 }
 
-# Credential setup tests (#0013)
-
-run_with_creds() {
-  printf "jmartinsmith@gmail.com\ntest_app_password_16\n" \
-    | bash "$SCRIPT"
+@test "adds scripts to PATH in .zshrc" {
+  export HOME="$TMPDIR/home"
+  mkdir -p "$HOME"
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  grep -q "aide" "$HOME/.zshrc"
 }
 
-@test "creates daily-briefing directory" {
-  run_with_creds
-  [ -d "$CONTEXT_DIR/daily-briefing" ]
+@test "does not duplicate PATH entry in .zshrc on re-run" {
+  export HOME="$TMPDIR/home"
+  mkdir -p "$HOME"
+  bash "$SCRIPT"
+  run bash "$SCRIPT"
+  count=$(grep -c "added by aide" "$HOME/.zshrc")
+  [ "$count" -eq 1 ]
 }
 
-@test "creates .env with GMAIL_ADDRESS" {
-  run_with_creds
-  grep -q "GMAIL_ADDRESS=" "$CONTEXT_DIR/.env"
+@test "manifest.md is regenerated with current repo path on re-run" {
+  bash "$SCRIPT"
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  grep -q "cleanup_planner:" "$CONTEXT_DIR/manifest.md"
+  grep -q "filter_emails:" "$CONTEXT_DIR/manifest.md"
 }
 
-@test "creates .env with GMAIL_APP_PASSWORD" {
-  run_with_creds
-  grep -q "GMAIL_APP_PASSWORD=" "$CONTEXT_DIR/.env"
-}
-
-@test ".env values match what was entered" {
-  run_with_creds
-  grep -q "GMAIL_ADDRESS=jmartinsmith@gmail.com" "$CONTEXT_DIR/.env"
-  grep -q "GMAIL_APP_PASSWORD=test_app_password_16" "$CONTEXT_DIR/.env"
+@test "manifest.md contains filter_emails path" {
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  grep -q "filter_emails:" "$CONTEXT_DIR/manifest.md"
 }
 
 @test "seeds email-filter.md with default blocklist" {
-  run_with_creds
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
   [ -f "$CONTEXT_DIR/email-filter.md" ]
   grep -q "noreply@" "$CONTEXT_DIR/email-filter.md"
 }
 
-@test "does not overwrite existing .env on re-run" {
-  run_with_creds
-  printf "GMAIL_ADDRESS=original@example.com\nGMAIL_APP_PASSWORD=original_pw\n" > "$CONTEXT_DIR/.env"
-  run_with_creds
-  grep -q "original@example.com" "$CONTEXT_DIR/.env"
-}
-
 @test "does not overwrite existing email-filter.md on re-run" {
-  run_with_creds
+  bash "$SCRIPT"
   printf "# custom blocklist\n- custom@example.com\n" > "$CONTEXT_DIR/email-filter.md"
-  run_with_creds
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
   grep -q "custom@example.com" "$CONTEXT_DIR/email-filter.md"
 }
 
-@test "prints instructions before prompting for credentials" {
-  output=$(printf "jmartinsmith@gmail.com\ntest_app_password_16\n" \
-    | bash "$SCRIPT" 2>&1)
-  echo "$output" | grep -qi "app password\|gmail"
+@test "does not create .env (credentials handled by MCP)" {
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  [ ! -f "$CONTEXT_DIR/.env" ]
+}
+
+@test "does not create daily-briefing directory (no pre-fetch files needed)" {
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  [ ! -d "$CONTEXT_DIR/daily-briefing" ]
 }

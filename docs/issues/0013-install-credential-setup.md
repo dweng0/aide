@@ -1,6 +1,6 @@
 # #13 — install.sh: credential setup and daily-briefing scaffold
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · wontfix
 
 ## What to build
 

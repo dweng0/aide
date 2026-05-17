@@ -1,6 +1,6 @@
 # #16 — Today's Goals: calendar and email phases
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 

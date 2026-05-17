@@ -18,7 +18,8 @@ fi
 goals_file="$CONTEXT_DIR/daily-goals.md"
 if [ -s "$goals_file" ]; then
   goals_archive="$CONTEXT_DIR/goals-archive.md"
-  printf "## %s\n" "$YESTERDAY" >> "$goals_archive"
+  goals_date="$(stat -f "%Sm" -t "%d-%m-%y" "$goals_file" 2>/dev/null || echo "$YESTERDAY")"
+  printf "## %s\n" "$goals_date" >> "$goals_archive"
   cat "$goals_file" >> "$goals_archive"
   printf "\n" >> "$goals_archive"
   : > "$goals_file"

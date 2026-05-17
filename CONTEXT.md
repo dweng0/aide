@@ -19,13 +19,13 @@ The LLM-maintained checklist of Soft Tasks (`.notes-context/user-planner.md`). E
 A single run of either the Retrospective Skill or Introspective Skill inside the AI tool (opencode or Claude Code).
 
 ### Retrospective Skill
-Runs independently of note-writing. Reads the User Planner and up to 2 weeks of Notes, asks the user about open Soft Tasks, promotes new Soft Tasks into the User Planner, then runs the cleanup script to strip resolved items.
+Run in the morning before the Today's Goals Skill, or at end of day — either works. Reads the User Planner and notes since the last run (falling back to 14 days on first run), surfaces open Soft Tasks for the user to close out, promotes newly found Soft Tasks from note prose into the User Planner, then runs the cleanup script to strip resolved items. After each run, records today's date as `last_scanned` in `manifest.md` so subsequent runs only process new notes.
 
 ### Introspective Skill
 On-demand skill triggered from the AI tool (opencode or Claude Code). Reads today's Note and cross-references it against both the User Planner (open Soft Tasks) and the Daily Goals to assess whether the user is on track for the day. The user triggers it when they want a mid-day or end-of-day check-in — it is not tied to opening or writing a Note.
 
 ### Today's Goals Skill
-Morning ritual skill that combines an external briefing with structured goal-setting. Runs in four phases, in order: (1) reads Google Calendar for today's events and surfaces candidates; (2) reads Gmail and surfaces emails from known Stakeholders or that imply action required, filtering automated noise; (3) surfaces Deliverables from the active project's Now horizon — if multiple projects have roadmaps, asks which project to focus on; (4) asks "anything else?". For each surfaced item the user confirms before it becomes a goal. Confirmed items are drilled into concrete subtasks using follow-up questions ("what does done look like today?", "any blockers?"). Writes results to `.notes-context/daily-goals.md` with the goal name as a heading and sharpened subtasks as checkbox items. The Introspective Skill uses this file as its reference for whether the user is on track. Roadmap GPS remains the sole path for marking Deliverables complete — ticking off daily subtasks does not update the roadmap.
+Morning ritual skill that combines an external briefing with structured goal-setting. Runs in five phases, in order: (1) reads Google Calendar for today's events and surfaces candidates; (2) reads Gmail and surfaces emails from known Stakeholders or that imply action required, filtering automated noise; (3) surfaces open Soft Tasks from the User Planner that are actionable today; (4) surfaces Deliverables from the active project's Now horizon — if multiple projects have roadmaps, asks which project to focus on; (5) asks "anything else?". For each surfaced item the user confirms before it becomes a goal. Confirmed items are drilled into concrete subtasks using follow-up questions ("what does done look like today?", "any blockers?"). Writes results to `.notes-context/daily-goals.md` with the goal name as a heading and sharpened subtasks as checkbox items. The Introspective Skill uses this file as its reference for whether the user is on track. Roadmap GPS remains the sole path for marking Deliverables complete — ticking off daily subtasks does not update the roadmap.
 
 ### Daily Goals
 A set of goals for the current day, each decomposed into measurable subtask checkboxes by the Today's Goals Skill. Stored in `.notes-context/daily-goals.md`. Format: goal name as `##` heading, subtasks as `- [ ]` items. When `note_organizer.sh` runs at the start of a new day, it archives the previous day's `daily-goals.md` into `.notes-context/goals-archive.md` (prepending a date header) preserving checkbox state (`[x]` or `[ ]`) so completion history is retained, then resets `daily-goals.md` for the new day.
@@ -43,16 +43,21 @@ aide/
 │   ├── note_taker.sh
 │   ├── weekly-notes.sh
 │   └── cleanup_planner.py
-├── skills/
-│   ├── retrospective.json
-│   ├── introspective.json
-│   └── todays-goals.json
+├── skills/             # each skill has a .json trigger file and a SKILL.md directory
+│   ├── todays-goals.json / todays-goals/SKILL.md
+│   ├── introspective.json / introspective/SKILL.md
+│   ├── retrospective.json / retrospective/SKILL.md
+│   ├── project-start.json / project-start/SKILL.md
+│   └── roadmap-gps.json / roadmap-gps/SKILL.md
+├── tests/              # bats test suite
 └── .notes-context/     # gitignored — created by install.sh
     ├── manifest.md
     ├── history_index.md
     ├── user-planner.md
     ├── daily-goals.md
-    └── goals-archive.md
+    ├── goals-archive.md
+    ├── email-filter.md
+    └── projects/
 ```
 
 ### LLM Planner

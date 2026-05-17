@@ -1,6 +1,6 @@
 # ADR 0002 — Today's Goals Skill doubles as the morning briefing
 
-**Status:** Accepted  
+**Status:** Partially superseded by ADR 0003 (external data access decision only)
 **Date:** 2026-05-15
 
 ## Context

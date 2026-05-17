@@ -1,6 +1,6 @@
 # #17 — Today's Goals: Deliverables phase
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · done
 
 ## What to build
 

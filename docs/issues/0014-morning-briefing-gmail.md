@@ -1,6 +1,6 @@
 # #14 — morning_briefing.py: Gmail fetch via IMAP
 
-**Labels:** enhancement · ready-for-agent
+**Labels:** enhancement · wontfix
 
 ## What to build
 

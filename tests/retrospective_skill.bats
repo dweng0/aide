@@ -15,9 +15,18 @@ SKILL_JSON="$BATS_TEST_DIRNAME/../skills/retrospective.json"
   grep -q "user-planner.md" "$SKILL_MD"
 }
 
-@test "SKILL.md references ~/notes/ and 14-day window" {
+@test "SKILL.md references ~/notes/ and 14-day fallback window" {
   grep -q '~/notes/' "$SKILL_MD"
   grep -q "14 days" "$SKILL_MD"
+}
+
+@test "SKILL.md uses last_scanned from manifest for incremental scans" {
+  grep -q "last_scanned" "$SKILL_MD"
+  grep -q "manifest.md" "$SKILL_MD"
+}
+
+@test "SKILL.md updates last_scanned after session" {
+  grep -q "last_scanned" "$SKILL_MD"
 }
 
 @test "SKILL.md references cleanup_planner.py" {
