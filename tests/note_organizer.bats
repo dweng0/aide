@@ -36,29 +36,34 @@ teardown() {
   [ "$(wc -l < "$CONTEXT_DIR/history_index.md")" -eq 1 ]
 }
 
-@test "archives daily-goals.md with yesterday's date header on a new day" {
-  printf "## Goal A\n- [x] done\n" > "$CONTEXT_DIR/daily-goals.md"
+@test "appends daily goals to yesterday's note under a Goals section" {
+  printf "## Ship feature\n- [x] write tests\n- [ ] deploy\n" > "$CONTEXT_DIR/daily-goals.md"
+  touch "$NOTES_DIR/$YESTERDAY.md"
   run bash "$SCRIPT"
-  [ -f "$CONTEXT_DIR/goals-archive.md" ]
-  grep -q "## $YESTERDAY" "$CONTEXT_DIR/goals-archive.md"
+  [ "$status" -eq 0 ]
+  grep -q "## Goals" "$NOTES_DIR/$YESTERDAY.md"
+  grep -q "## Ship feature" "$NOTES_DIR/$YESTERDAY.md"
 }
 
-@test "preserves checkbox state in goals archive" {
-  printf -- "- [x] completed task\n- [ ] open task\n" > "$CONTEXT_DIR/daily-goals.md"
-  run bash "$SCRIPT"
-  grep -q "\- \[x\] completed task" "$CONTEXT_DIR/goals-archive.md"
-  grep -q "\- \[ \] open task" "$CONTEXT_DIR/goals-archive.md"
-}
-
-@test "clears daily-goals.md after archiving" {
+@test "clears daily-goals.md after appending to yesterday's note" {
   printf "some goals\n" > "$CONTEXT_DIR/daily-goals.md"
+  touch "$NOTES_DIR/$YESTERDAY.md"
   run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
   [ -f "$CONTEXT_DIR/daily-goals.md" ]
   [ ! -s "$CONTEXT_DIR/daily-goals.md" ]
 }
 
-@test "does not archive when daily-goals.md is empty" {
-  touch "$CONTEXT_DIR/daily-goals.md"
+@test "clears daily-goals.md even when yesterday's note does not exist" {
+  printf "some goals\n" > "$CONTEXT_DIR/daily-goals.md"
   run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  [ ! -s "$CONTEXT_DIR/daily-goals.md" ]
+}
+
+@test "does not create goals-archive.md" {
+  printf "## Goal A\n- [x] done\n" > "$CONTEXT_DIR/daily-goals.md"
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
   [ ! -f "$CONTEXT_DIR/goals-archive.md" ]
 }

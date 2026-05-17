@@ -23,9 +23,15 @@ teardown() {
 @test "creates all context files when absent" {
   run bash "$SCRIPT"
   [ "$status" -eq 0 ]
-  for f in manifest.md history_index.md user-planner.md daily-goals.md goals-archive.md; do
+  for f in manifest.md history_index.md user-planner.md daily-goals.md; do
     [ -f "$CONTEXT_DIR/$f" ]
   done
+}
+
+@test "does not create goals-archive.md" {
+  run bash "$SCRIPT"
+  [ "$status" -eq 0 ]
+  [ ! -f "$CONTEXT_DIR/goals-archive.md" ]
 }
 
 @test "does not overwrite existing context files on re-run" {

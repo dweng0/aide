@@ -26,8 +26,7 @@ Open a new terminal. You can now run `note_organizer.sh` by name.
 | Manifest | `~/.notes-context/manifest.md` | Index of all context files — read by skills |
 | Recent files | `~/.notes-context/history_index.md` | Chronological list of note filenames |
 | Planner | `~/.notes-context/user-planner.md` | Carry-forward tasks with checkboxes |
-| Daily goals | `~/.notes-context/daily-goals.md` | Today's goals, reset each morning |
-| Goals archive | `~/.notes-context/goals-archive.md` | Archived goals with date headers |
+| Daily goals | `~/.notes-context/daily-goals.md` | Today's goals; appended to yesterday's note each morning then cleared |
 | Projects dir | `~/.notes-context/projects/` | Per-project context and stakeholder files |
 | Fish PATH | `~/.config/fish/conf.d/aide.fish` | Adds `aide/scripts/` to `$PATH` |
 

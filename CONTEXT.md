@@ -28,7 +28,7 @@ On-demand skill triggered from the AI tool (opencode or Claude Code). Reads toda
 Morning ritual skill that combines an external briefing with structured goal-setting. Runs in five phases, in order: (1) reads Google Calendar for today's events and surfaces candidates; (2) reads Gmail and surfaces emails from known Stakeholders or that imply action required, filtering automated noise; (3) surfaces open Soft Tasks from the User Planner that are actionable today; (4) surfaces Deliverables from the active project's Now horizon — if multiple projects have roadmaps, asks which project to focus on; (5) asks "anything else?". For each surfaced item the user confirms before it becomes a goal. Confirmed items are drilled into concrete subtasks using follow-up questions ("what does done look like today?", "any blockers?"). Writes results to `.notes-context/daily-goals.md` with the goal name as a heading and sharpened subtasks as checkbox items. The Introspective Skill uses this file as its reference for whether the user is on track. Roadmap GPS remains the sole path for marking Deliverables complete — ticking off daily subtasks does not update the roadmap.
 
 ### Daily Goals
-A set of goals for the current day, each decomposed into measurable subtask checkboxes by the Today's Goals Skill. Stored in `.notes-context/daily-goals.md`. Format: goal name as `##` heading, subtasks as `- [ ]` items. When `note_organizer.sh` runs at the start of a new day, it archives the previous day's `daily-goals.md` into `.notes-context/goals-archive.md` (prepending a date header) preserving checkbox state (`[x]` or `[ ]`) so completion history is retained, then resets `daily-goals.md` for the new day.
+A set of goals for the current day, each decomposed into measurable subtask checkboxes by the Today's Goals Skill. Stored in `.notes-context/daily-goals.md`. Format: goal name as `##` heading, subtasks as `- [ ]` items. When `note_organizer.sh` runs at the start of a new day, it appends the previous day's goals to yesterday's note file under a `## Goals` section (if that note exists), then clears `daily-goals.md`. Historical goals are therefore preserved inline in the daily note for that date in `~/notes/`. This co-location is intentional — the `## Goals` sections in daily notes are the planned data source for future goal-completion metrics (e.g. completion rates, goal frequency, carry-forward patterns). Do not remove or redirect this archiving step without a replacement metrics strategy.
 
 ### Aide Repo
 The `aide` repository. Ships with scripts, skills, and an `install.sh`. Does not ship personal data — `.notes-context/` is fully gitignored. `install.sh` creates the `.notes-context/` directory and initialises empty files on first run. Structure:
@@ -55,7 +55,6 @@ aide/
     ├── history_index.md
     ├── user-planner.md
     ├── daily-goals.md
-    ├── goals-archive.md
     ├── email-filter.md
     └── projects/
 ```

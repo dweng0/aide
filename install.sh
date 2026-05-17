@@ -19,7 +19,7 @@ manifest="$CONTEXT_DIR/manifest.md"
   printf "filter_emails: %s/scripts/filter_emails.py\n" "$REPO"
 } > "$manifest"
 
-for f in history_index.md user-planner.md daily-goals.md goals-archive.md; do
+for f in history_index.md user-planner.md daily-goals.md; do
   target="$CONTEXT_DIR/$f"
   if [ ! -f "$target" ]; then
     case "$f" in
